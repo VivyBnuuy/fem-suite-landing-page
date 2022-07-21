@@ -1,4 +1,7 @@
 :root {
+  height: 100%;
+  background-color: var(--cream);
+
   /* ---------- Main colors ---------- */
   --dark-blue: #172339;
   --light-blue: #49566D;
@@ -9,10 +12,11 @@
   --orange: #FFA84E;
 
   /* ---------- Gradients ---------- */
-  --linear-gradient: linear-gradient(150deg, var(--dark-purple), var(--bright-purple), var(--orange));
+  /* Button gradient */
+  --button-gradient: linear-gradient(150deg, var(--dark-purple), var(--bright-purple), var(--orange));
 
-  /* TODO: Figure out how to mimic design radial gradient and add the two colored circles on top left and bottom left */
-  --radial-gradient: radial-gradient(circle at bottom right, var(--dark-purple), var(--bright-purple), var(--orange));
+  /* Background gradient */
+  --background-gradient: linear-gradient(180deg, var(--off-white) 75%, var(--cream) 25%);
 
   /* ---------- Typography ---------- */
   /* Default font size */
@@ -67,17 +71,15 @@ body {
   font-size: var(--body-size);
 
   height: 100%;
-
-  background-color: var(--off-white);
 }
 
 /* ---------- Desktop Layout ---------- */
 .grid_wrapper {
   display: grid;
 
-  height: 100vh;
+  height: 100%;
 
-  background-color: var(--off-white);
+  background-image: var(--background-gradient);
 }
 
 .grid_contents {
@@ -85,18 +87,13 @@ body {
   justify-content: center;
 
   grid-template: repeat(4, max-content) / repeat(3, 370px);
-  grid-template-areas:
-    "top_left top_center top_right"
-    "middle_left middle_center middle_right"
-    "bottom_left bottom_center bottom_right"
-    "footer_left footer_center footer_right";
 
-    margin-top: 4rem;
+  margin: 4rem 0;
 }
 
 /* Top left "suite" */
 .logo {
-  grid-area: top_left;
+  grid-area: 1 / 1 / 2 / 2;
   align-self: center;
 
   margin: 0;
@@ -104,10 +101,10 @@ body {
 
 /* top right button */
 .button_beta_secondary_container {
-  grid-area: top_right;
+  grid-area: 1 / 3 / 2 / 4;
   justify-self: end;
 
-  background-color: none;
+  background-color: unset;
 
   border: solid 2px var(--dark-blue);
   border-radius: 0.5rem;
@@ -132,18 +129,119 @@ body {
 }
 
 /* Middle of page */
-.middle_contents {
-  grid-area: middle_left;
+.middle_container {
+  display: grid;
+  grid-column: span 3;
+  grid-template: repeat(4, auto) / repeat(4, auto);
+
+  margin: 4rem 0 7rem 0;
+}
+
+.middle_left_contents {
+  grid-area: 1 / 1 / 5 / 4;
+
+  margin-top: 3rem;
+}
+
+.middle_line {
+  grid-area: 1 / 1 / 2 / 4;
+  align-self: center;
+  justify-self: center;
 
   margin-top: 2rem;
+  margin-right: 2.6rem;
+
+  z-index: 2;
+}
+
+.header_middle {
+  grid-area: 1 / 1 / 3 / 4;
+  align-self: center;
+
+  font-size: var(--heading-xl-size);
+  line-height: var(--heading-xl-line-height);
+  letter-spacing: var(--heading-xl-letter-spacing);
+  font-weight: normal;
+
+  max-width: 17ch;
+
+  margin: 2rem 0 0 0;
+
+  position: relative;
+  z-index: 2;
+}
+
+.middle_paragraph {
+  grid-area: 3 / 1 / 4 / 3;
+  align-self: start;
+
+  font-size: var(--body-size);
+  line-height: var(--body-line-height);
+  letter-spacing: var(--body-letter-spacing);
+  color: var(--light-blue);
+
+  max-width: 33ch;
+
+  margin: 3rem 0;  
+}
+
+.button_beta_primary_container {
+  grid-area: 4 / 1 / 5 / 2;
+
+  background-color: var(--dark-blue);
+
+  color: var(--cream);
+  font-weight: bold;
+
+  border-radius: 0.3rem;
+
+  padding: 1rem 1.5rem;
+
+  max-width: fit-content;
+  height: fit-content;
+}
+
+.button_beta_primary_container:hover {
+  cursor: pointer;
+  background-color: unset;
+  background-image: var(--button-gradient);
 }
 
 .middle_image_container {
-  grid-area: middle_center;
+  grid-area: 1 / 3 / 5 / 4;
+
+  margin-right: 1rem;
+
+  z-index: 1;
 }
 
 .middle_stats_container {
-  grid-area: middle_right;
+  grid-area: 1 / 4 / 5 / 5;
+  align-self: center;
+  justify-self: start;
+}
+
+.stats_heading {
+  font-size: var(--heading-l-size);
+  line-height: var(--heading-l-line-height);
+  letter-spacing: var(--heading-xl-letter-spacing);
+  color: var(--dark-blue);
+
+  margin: 0;
+}
+
+.stats_text {
+  font-size: var(--heading-s-size);
+  line-height: var(--heading-s-line-height);
+  letter-spacing: var(--heading-s-letter-spacing);
+  color: var(--light-blue);
+  text-transform: uppercase;
+
+  margin: 0 0 3rem 0;
+}
+
+.stats_text:nth-child(6) {
+  margin: 0;
 }
 
 /* Bottom of page */
@@ -155,6 +253,10 @@ body {
 
 .bottom_background {
   background-color: var(--dark-blue);
+  background-image: url(assets/pattern-blur.svg);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: 2rem 5rem;
 
   border-radius: 1rem;
 
@@ -167,13 +269,13 @@ body {
   justify-self: center;
 
   position: relative;
-  top: 5rem;
+  margin-top: 5rem;
 }
 
 .bottom_image {
   z-index: 2;
   grid-area: 1 / 1 / 3 / 4;
-  justify-self: center;
+  margin-left: 7rem;
 }
 
 .curved_line2 {
@@ -183,15 +285,17 @@ body {
 
   position: relative;
   top: 30%;
-
-  margin-left: 3rem;
 }
 
 .bottom_contents {
-  grid-area: 2 / 4 / 3 / span 2;
+  grid-area: 2 / 3 / 3 / span 3;
   align-self: center;
+  justify-self: center;
 
-  margin-right: 4rem;
+  margin-left: 4.3rem;
+
+  max-width: 35ch;
+  
 }
 
 .bottom_header {
@@ -239,7 +343,7 @@ footer {
   grid-column: span 3;
   grid-template: 1fr / repeat(3, 1fr);
 
-  margin-top: 5rem;
+  margin-top: 4rem;
 }
 
 .logo:nth-child(1) {
@@ -274,6 +378,7 @@ footer {
 
 .footer_image:hover {
   transform: scale(110%);
+  opacity: 50%;
   cursor: pointer;
 }
 .footer_image:nth-child(2) {
