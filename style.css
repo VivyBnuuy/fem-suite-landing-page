@@ -84,7 +84,7 @@
 
   /* Heading XL */
   --heading-xl-size-mobile: 2.12rem;
-  --heading-xl-line-height: 2.44rem;
+  --heading-xl-line-height-mobile: 2.44rem;
 }
 
 body {
@@ -608,7 +608,7 @@ footer {
 
   .header_middle {
     font-size: var(--heading-xl-size-mobile);
-    line-height: var(--heading-xl-line-height);
+    line-height: var(--heading-xl-line-height-mobile);
 
     margin-right: 1rem;
   }
