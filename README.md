@@ -19,6 +19,6 @@ For this challenge, I used the following:
 - I'm wondering if there was a better way to get the font variables for the tablet and mobile layouts. I could've probably used calc() with the original variable instead of declaring new ones. Not sure which one is best practice?
 
 # The End
-Thanks for checking out my solution to this challenge! If you have any feedback, I would love if you reached out to me or left a comment on my <a href="https://www.frontendmentor.io/solutions/suite-landing-page-made-with-css-grid-gX3QiJwSWk" target="_blank">solution page</a> - I'm always looking to improve!
+Thanks for checking out my solution to this challenge! If you have any feedback, I would love if you reached out to me or opened an issue if there's anything that needs fixing; I'm always looking to improve!
 
 Happy coding!
